@@ -1,0 +1,16 @@
+<ul>
+    {% for doc in storage %}
+    <li>Name: {{doc.fname}} {{doc.lname}}
+        <br>
+        Practice Name: {{doc.practiceName}}
+        Address: {{doc.street}}
+        <br>
+        {{doc.city}}, {{doc.state}} {{doc.zip}}
+        <br>
+        Phone: {{doc.phone}}
+        <br>
+        Biography: {{doc.bio}}
+    </li>
+    <br>
+    {% endfor %}
+</ul>
