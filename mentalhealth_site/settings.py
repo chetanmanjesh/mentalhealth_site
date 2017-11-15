@@ -25,7 +25,7 @@ SECRET_KEY = '90xzn4j_fqbo^_+l$%#970%j(ov^dk05(#gns2a1&#!d^j@ok*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['wecare-mind.com', '104.131.5.168']
+ALLOWED_HOSTS = ['104.131.5.168']
 
 
 # Application definition
