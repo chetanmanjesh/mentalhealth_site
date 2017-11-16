@@ -35,26 +35,26 @@ class PostUserData(APIView):
             string += str(item)+" : "+str(response_dict[item][0])+"\n"
             print(item)
         comment = response_dict['question_2'][0]
-        sentiment = get_tone(comment)
+        #sentiment = get_tone(comment)
         # Classify using Naive Bayes
 
         classifier = Classifier(model='analyze_tone_from_voice/classifier/model.p')
         naive_bayes_pred = classifier.predict(comment)
-
+a
         response_dict = {}
         response_dict['comment'] = comment
         ret_str="<head><link rel=\"stylesheet\" href=\"assets/bootstrap/css/bootstrap.min.css\"><link rel=\"stylesheet\" href=\"assets/flat-icon/flaticon.css\"><link rel=\"stylesheet\" href=\"temp/styles/styles.css\"></head>"
         ret_str += '<h1> Analysis of Results </h1>'
         ret_str += '<br>Comment made by user : ' + comment + "</br>"
         ret_str += '<br>Disorder predicted using our predictive model is : <b>'+naive_bayes_pred+'</b></br>'
-        if sentiment == 'Sadness':
+        if naive_bayes_pred == 'depression':
             response_dict['sentiment'] = 'Depression'
             ret_str += "<br>Disorder predicted using the IBM Tone Analyzer from comment : <b>depression</b> </br><h1>Useful Coping resources</h1>"
             for item in Depression.objects.all():
                 response_dict[item.id] = item.link
                 ret_str += "<br><a href=\"" + item.link + "\">" + item.link + "</a></br>"
 
-        elif sentiment == 'Anger':
+        elif naive_bayes_pred == 'stress':
             response_dict['sentiment'] = 'Stress'
             ret_str += "<br>Precited mental disorder from comment : <b>stress</b> </br><h1>Useful Coping resources</h1>"
             for item in Stress.objects.all():
