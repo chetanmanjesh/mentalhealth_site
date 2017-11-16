@@ -19,6 +19,8 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from analyze_tone_from_voice import views
 
 urlpatterns = [
+    url(r"", include("home.urls")),
+    url(r"^doctor_referrals/", include("doctor_referrals.urls")),
     url(r"^doctor_referrals/", include("doctor_referrals.urls")),
     url(r'^admin/', admin.site.urls),
     url(r'^voice_tone_analysis/', include("analyze_tone_from_voice.urls")),
