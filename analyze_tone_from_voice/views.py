@@ -40,7 +40,6 @@ class PostUserData(APIView):
 
         classifier = Classifier(model='analyze_tone_from_voice/classifier/model.p')
         naive_bayes_pred = classifier.predict(comment)
-a
         response_dict = {}
         response_dict['comment'] = comment
         ret_str="<head><link rel=\"stylesheet\" href=\"assets/bootstrap/css/bootstrap.min.css\"><link rel=\"stylesheet\" href=\"assets/flat-icon/flaticon.css\"><link rel=\"stylesheet\" href=\"temp/styles/styles.css\"></head>"
