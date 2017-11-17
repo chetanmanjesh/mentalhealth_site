@@ -12,6 +12,17 @@ class Stress(models.Model):
     index = models.IntegerField()
     link = models.CharField(max_length = 500)
 
+
+# Create Model for PTSD
+class PTSD(models.Model):
+    index = models.IntegerField()
+    link = models.CharField(max_length = 500)
+
+# Create Model for ADHD
+class ADHD(models.Model):
+    index = models.IntegerField()
+    link = models.CharField(max_length = 500)
+
 class Person2(models.Model):
     location =  models.CharField(max_length = 500)
     url = models.CharField(max_length = 500)
