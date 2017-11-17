@@ -13,7 +13,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Depression, Stress, Person2
+from .models import Depression, Stress, ADHD, PTSD
 from analyze_tone_from_voice.classifier.classifier import Classifier
 import _pickle as pickle
 
@@ -24,7 +24,6 @@ class PostUserData(APIView):
 
     @csrf_exempt
     def post(request, format = None):
-        html_response = request.POST
         response_dict = dict(request.POST)
         string = ''
         for item in response_dict:
@@ -39,18 +38,38 @@ class PostUserData(APIView):
         response_dict['comment'] = comment
         ret_str="<head><link rel=\"stylesheet\" href=\"assets/bootstrap/css/bootstrap.min.css\"><link rel=\"stylesheet\" href=\"assets/flat-icon/flaticon.css\"><link rel=\"stylesheet\" href=\"temp/styles/styles.css\"></head>"
         ret_str += '<h1> Analysis of Results </h1>'
-        ret_str += '<br>Comment made by user : ' + comment + "</br>"
-        ret_str += '<br>Disorder predicted using our predictive model is : <b>'+naive_bayes_pred+'</b></br>'
+        ret_str += '<br>Comment made by user : <b>\"' + comment + '\"</b></br>'
+
         if naive_bayes_pred == 'depression':
             response_dict['sentiment'] = 'Depression'
+            ret_str += '<br>Disorder predicted using our predictive model is : <b>' + response_dict['sentiment'] + '</b></br>'
+            ret_str += '<h3>Here are some links to resouces that could help you:</h3>'
             for item in Depression.objects.all():
                 response_dict[item.id] = item.link
                 ret_str += "<br><a href=\"" + item.link + "\">" + item.link + "</a></br>"
 
         elif naive_bayes_pred == 'stress':
             response_dict['sentiment'] = 'Stress'
-            ret_str += "<br>Precited mental disorder from comment : <b>stress</b> </br><h1>Useful Coping resources</h1>"
+            ret_str += '<br>Disorder predicted using our predictive model is : <b>' + response_dict['sentiment'] + '</b></br>'
+            ret_str += '<h3>Here are some links to resouces that could help you:</h3>'
             for item in Stress.objects.all():
+                response_dict[item.id] = item.link
+                ret_str += "<br><a href=\"" + item.link + "\">"+item.link+"</a></br>"
+
+
+        if naive_bayes_pred == 'adhd':
+            response_dict['sentiment'] = 'ADHD'
+            ret_str += '<br>Disorder predicted using our predictive model is : <b>' + response_dict['sentiment'] + '</b></br>'
+            ret_str += '<h3>Here are some links to resouces that could help you:</h3>'
+            for item in ADHD.objects.all():
+                response_dict[item.id] = item.link
+                ret_str += "<br><a href=\"" + item.link + "\">" + item.link + "</a></br>"
+
+        elif naive_bayes_pred == 'ptsd':
+            response_dict['sentiment'] = 'PTSD'
+            ret_str += '<br>Disorder predicted using our predictive model is : <b>' + response_dict['sentiment'] + '</b></br>'
+            ret_str += '<h3>Here are some links to resouces that could help you:</h3>'
+            for item in PTSD.objects.all():
                 response_dict[item.id] = item.link
                 ret_str += "<br><a href=\"" + item.link + "\">"+item.link+"</a></br>"
 
