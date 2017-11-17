@@ -2,16 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to WeCare, where we try to help you with issues relating to the Mind.</title>
+    <title>Welcome to WeCare.</title>
 </head>
 <body>
     <h1>Welcome to WeCare!</h1>
-        Based on what you type about the current psychological problems you are facing, we analyze your input and suggest a set of possible disorders that could be the cause of your problems.
-    <h2>How are you feeling like today?</h2>
+        WeCare uses machine learning to analyze text entered by users and predicts the kind of disorder that could be affecting them.<br>
+        Currently the disorders that we predict are as follows:<br>
+    <ul>
+        <li>ADHD</li>
+        <li>PTSD</li>
+        <li>Depression</li>
+    </ul>
+    We are expanding our model to predict other disorders such as Bipolar Disorder, Postpartum Depression, and other Stress and Anxiety related conditions.
+
+
+
+    <h2>What problems do you face?</h2>
+    Our model uses your response to the above question to your disorder. We also provide a list of online coping resources for the predicted disorder.
         <form method="post" action="/voice_tone_analysis/post/">
-            <input name = 'question_2', type="text" placeholder="question_2"/>
-            <input type="submit" value="submit">
+            <textarea name = 'question_2', rows="7" cols="50"></textarea>
+            <input type="submit" value="Click to Get Prediction">
         </form>
-<br><b>Since we aren't licensed practitioners, our feedback should be taken with a grain of salt and in no way interpreted to be a substitute for advice from an actual mental-health care practitioner.</b>
+<br><b>Since we aren't licensed practitioners, our feedback should be taken with a grain of salt and in no way interpreted to be a substitute for advice from an actual healthcare practitioner.</b>
 </body>
 </html>
+
+
+<h2>About us</h2>
+This application was developed by a group of students from the University of Massachusetts Amherst, New York Unversity and the University of Illinois at Urbana-Champaign.<br>
+The team  members are <a href="chetanmanjesh.com">Chetan Manjesh</a>, Yu-Han Chen, Ayush Sharma, Suprith Aireddy and Shi Zhang. <br>
+We are very passionate about the area of mental health and are aware of the challenges that people sufferering from mental health related issues face. There is still a lot of stigma associated with mental illness that prevents people from reaching out to others, for this reason we created this website to enable people to be heard and to guide them in the right direction.<br>
